@@ -1,5 +1,6 @@
 package com.example.rober.tresactividades;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
 // callback de una opcion del boton de menu
         if (item.getItemId() == 1234) {
             Toast.makeText(this, "Opcion1", Toast.LENGTH_LONG).show();
+
+            //---------- IR A OTRA ACTIVITY (Activity2)
+            Intent intencion1 = new Intent(MainActivity.this, Activity2.class);
+            intencion1.putExtra("VengoDe","MainActivity");
+            MainActivity.super.startActivity(intencion1);
+            //---------
         } else if (item.getItemId() == 1235) {
             Toast.makeText(this, "Opcion2", Toast.LENGTH_LONG).show();
         }
