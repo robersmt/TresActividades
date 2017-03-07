@@ -62,6 +62,8 @@ public class Activity2 extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 //cuando le doy a no
                                 Toast.makeText(THIS, "Vuelve a elegir", Toast.LENGTH_LONG).show();
+                                colorG.setVisibility(TextView.VISIBLE);
+                                colorB.setVisibility(TextView.VISIBLE);
                                 dialog.cancel();
                             }
                         });
@@ -110,6 +112,8 @@ public class Activity2 extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 //cuando le doy a no
                                 Toast.makeText(THIS, "Vuelve a elegir", Toast.LENGTH_LONG).show();
+                                colorR.setVisibility(TextView.VISIBLE);
+                                colorB.setVisibility(TextView.VISIBLE);
                                 dialog.cancel();
                             }
                         });
@@ -159,6 +163,8 @@ public class Activity2 extends AppCompatActivity {
                                 //cuando le doy a no
                                 Toast.makeText(THIS, "Vuelve a elegir", Toast.LENGTH_LONG).show();
                                 dialog.cancel();
+                                colorG.setVisibility(TextView.VISIBLE);
+                                colorR.setVisibility(TextView.VISIBLE);
                             }
                         });
 

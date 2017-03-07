@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         int opcion1 = 1234;
         int opcion2 = 1235;
 // para crear los menus
-        menu.add(0, opcion1, 0, "Opcion1").setIcon(android.R.drawable.ic_popup_sync);
-        menu.add(0, opcion2, 0, "Opcion2").setIcon(android.R.drawable.ic_popup_sync);
+        menu.add(0, opcion1, 0, "Colores").setIcon(android.R.drawable.ic_popup_sync);
+        menu.add(0, opcion2, 0, "Imagenes").setIcon(android.R.drawable.ic_popup_sync);
         return true;
     }
     //..........................................................................
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 // callback de una opcion del boton de menu
         if (item.getItemId() == 1234) {
-            Toast.makeText(this, "Opcion1", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Colores", Toast.LENGTH_LONG).show();
 
             //---------- IR A OTRA ACTIVITY (Activity2)
             Intent intencion1 = new Intent(MainActivity.this, Activity2.class);
@@ -37,7 +37,13 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.super.startActivity(intencion1);
             //---------
         } else if (item.getItemId() == 1235) {
-            Toast.makeText(this, "Opcion2", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Imagenes", Toast.LENGTH_LONG).show();
+
+            //---------- IR A OTRA ACTIVITY (Activity3)
+            Intent intencion2 = new Intent(MainActivity.this, Activity3.class);
+            intencion2.putExtra("VengoDe","MainActivity");
+            MainActivity.super.startActivity(intencion2);
+            //---------
         }
         return false;
     }
