@@ -123,15 +123,17 @@ public class Activity3 extends AppCompatActivity {
 
 
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d("Rober","onOptionsItemSelected llamado");
         // callback de una opcion del boton de menu
-        if (item.getItemId() == 111) {
+        if (item.getItemId() == 1111) {
             Toast.makeText(this, "enviar_pulsado", Toast.LENGTH_LONG).show();
 
             //Enviar la foto seleccionada: (pag.109 ApuntesPMOV)
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("image/jpeg");
             sendIntent.putExtra(Intent.EXTRA_STREAM, selectedImage);
-            
+            startActivity(sendIntent);
+
         }
         return false;
     }
