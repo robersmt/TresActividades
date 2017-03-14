@@ -14,21 +14,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-//...............................codigo de los apuntes pg54
+        //...............................codigo de los apuntes pg54
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        int opcion1 = 1234;
+    public boolean onCreateOptionsMenu(Menu menu) {  //creador de menus
+        int opcion1 = 1234;         //identificacion de las opciones
         int opcion2 = 1235;
-// para crear los menus
-        menu.add(0, opcion1, 0, "Colores").setIcon(android.R.drawable.ic_popup_sync);
+            // para crear los menus
+        menu.add(0, opcion1, 0, "Colores").setIcon(android.R.drawable.ic_popup_sync);       //opciones add
         menu.add(0, opcion2, 0, "Imagenes").setIcon(android.R.drawable.ic_popup_sync);
         return true;
     }
     //..........................................................................
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-// callback de una opcion del boton de menu
-        if (item.getItemId() == 1234) {
+            // callback de una opcion del boton de menu
+
+        if (item.getItemId() == 1234) {                                 //si pulsamos una opcion del menu
             Toast.makeText(this, "Colores", Toast.LENGTH_LONG).show();
 
             //---------- IR A OTRA ACTIVITY (Activity2)
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
             intencion1.putExtra("VengoDe","MainActivity");
             MainActivity.super.startActivity(intencion1);
             //---------
-        } else if (item.getItemId() == 1235) {
+
+        } else if (item.getItemId() == 1235) {                          //si pulsamos la otra opcion del menu
             Toast.makeText(this, "Imagenes", Toast.LENGTH_LONG).show();
 
             //---------- IR A OTRA ACTIVITY (Activity3)

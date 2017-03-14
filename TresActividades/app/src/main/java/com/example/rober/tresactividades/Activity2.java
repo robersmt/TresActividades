@@ -14,16 +14,17 @@ public class Activity2 extends AppCompatActivity {
 
     private TextView colorR, colorG, colorB;
 
-    private final Activity THIS = this;
+    private final Activity THIS = this; //una variable privada de un metodo la hacemos general
 
     final Context context = this;
-
+                                        //En esta activity solamente creamos un menu con tres textos pulsables de los cuales podemos elegir uno de ellos.
+                                        // cuando pulsamos uno nos pregunta si queremos elegir ese o no. Una vez elegido desaparece el resto.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
         //vincular el boton del layaut al de programa
-        colorR = (TextView) findViewById(R.id.colorR);
+        colorR = (TextView) findViewById(R.id.colorR);              //textos que contiene la funcion OnClick
         colorG = (TextView) findViewById(R.id.colorG);
         colorB = (TextView) findViewById(R.id.colorB);
 
@@ -50,20 +51,20 @@ public class Activity2 extends AppCompatActivity {
                                 //cuando le doy a si
                                 Toast.makeText(THIS, "ROJO_elegido", Toast.LENGTH_LONG).show();
                                 //hacer invisible el resto
-                                colorG.setVisibility(TextView.INVISIBLE);
+                                colorG.setVisibility(TextView.INVISIBLE);       //hacer invisible el resto de opciones
                                 colorB.setVisibility(TextView.INVISIBLE);
 
                                 dialog.cancel();
-
-
                             }
                         })
+
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //cuando le doy a no
                                 Toast.makeText(THIS, "Vuelve a elegir", Toast.LENGTH_LONG).show();
-                                colorG.setVisibility(TextView.VISIBLE);
+                                colorG.setVisibility(TextView.VISIBLE);     //hacer invisible el resto de opciones
                                 colorB.setVisibility(TextView.VISIBLE);
+
                                 dialog.cancel();
                             }
                         });

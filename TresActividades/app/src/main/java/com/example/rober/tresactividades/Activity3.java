@@ -32,8 +32,8 @@ public class Activity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_3);
-        botonCamara= (ImageButton) findViewById(R.id.botonCamara);
-        botonGaleria = (ImageButton) findViewById(R.id.botonGaleria);
+        botonCamara= (ImageButton) findViewById(R.id.botonCamara);              //vincular el boton con el layout
+        botonGaleria = (ImageButton) findViewById(R.id.botonGaleria);           ////vincular el boton con el layout
 
 
         //-------Escuchador del boton galeria
@@ -42,8 +42,8 @@ public class Activity3 extends AppCompatActivity {
             //-----cuando se pulse galeria
             public void onClick(View v) {
                 Toast.makeText(THIS, "Galeria Pulsado", Toast.LENGTH_LONG).show();
-
-
+                        //si pulsamos el boton
+                        //intent de abrir galeria
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -64,9 +64,10 @@ public class Activity3 extends AppCompatActivity {
 
                 //Creamos el intent para llamar a la camara
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                Uri foto_save = null;
+                //Uri foto_save = null;
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null){
                     startActivityForResult(takePictureIntent,FOTO_CAMARA);
+
                 }//final if
 
             }
@@ -79,13 +80,13 @@ public class Activity3 extends AppCompatActivity {
         });
 
     }
-
+        //menu opciones para enviar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        int opcion1 = 1111;
+        int opcionenviar = 1111;
 
         // para crear los menus
-        menu.add(0, opcion1, 0, "enviar").setIcon(android.R.drawable.ic_popup_sync);
+        menu.add(0, opcionenviar, 0, "enviar").setIcon(android.R.drawable.ic_popup_sync);
 
         return true;
     }
@@ -98,7 +99,7 @@ public class Activity3 extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
 
-        Uri selectedImageUri = null;
+        //Uri selectedImageUri = null;
 
         ImageView foto = (ImageView) findViewById(R.id.imageView);
         if(requestCode==SELECT_FILE){
@@ -122,9 +123,12 @@ public class Activity3 extends AppCompatActivity {
     }//final onActivityResult
 
 
+
+    //Escuchador del menu enviar
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d("Rober","onOptionsItemSelected llamado");
         // callback de una opcion del boton de menu
+
         if (item.getItemId() == 1111) {
             Toast.makeText(this, "enviar_pulsado", Toast.LENGTH_LONG).show();
 
