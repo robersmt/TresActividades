@@ -30,7 +30,8 @@
         android:id="@+id/colorG"
         android:clickable="true"
         android:onClick="onClick"
-        tools:textColor="@android:color/holo_green_light" />
+        tools:textColor="@android:color/holo_green_light"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
         android:text="AZUL"
@@ -43,7 +44,8 @@
         android:clickable="true"
         android:onClick="onClick"
         tools:textColor="@android:color/holo_blue_light"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
         android:text="ROJO"
@@ -58,5 +60,6 @@
         android:onClick="onClick"
         tools:textColor="@android:color/holo_red_light"
         tools:visibility="visible"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 </RelativeLayout>

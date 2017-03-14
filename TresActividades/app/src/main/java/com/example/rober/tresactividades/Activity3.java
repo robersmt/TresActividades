@@ -2,26 +2,29 @@ package com.example.rober.tresactividades;
 
 import android.app.Activity;
 import android.content.Intent;
+
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
-import static android.R.attr.data;
 
 public class Activity3 extends AppCompatActivity {
 
-    private static final int PICK_IMAGE = 1;
+
+
+    Uri selectedImage = null;
+    private static final int SELECT_FILE=1;
+    private static final int FOTO_CAMARA=2;
+
     private ImageButton botonGaleria,botonCamara;
     private final Activity THIS = this;
 
@@ -40,26 +43,11 @@ public class Activity3 extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(THIS, "Galeria Pulsado", Toast.LENGTH_LONG).show();
 
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-
-
-                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                getIntent.setType("image/*");
-
-                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                pickIntent.setType("image/*");
-
-                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
-
-                startActivityForResult(chooserIntent, PICK_IMAGE);
-
-                //ImageView imageView = (ImageView) findViewById(R.id.imageView);
-
-
+                startActivityForResult(Intent.createChooser(intent,"Seleccione una imagen"),SELECT_FILE);
 
             }
 
@@ -74,7 +62,12 @@ public class Activity3 extends AppCompatActivity {
                 Toast.makeText(THIS, "Camara Pulsado", Toast.LENGTH_LONG).show();
 
 
-
+                //Creamos el intent para llamar a la camara
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Uri foto_save = null;
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null){
+                    startActivityForResult(takePictureIntent,FOTO_CAMARA);
+                }//final if
 
             }
 
@@ -85,21 +78,61 @@ public class Activity3 extends AppCompatActivity {
 
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        int opcion1 = 1111;
+
+        // para crear los menus
+        menu.add(0, opcion1, 0, "enviar").setIcon(android.R.drawable.ic_popup_sync);
+
+        return true;
+    }
+
+
+
+
+
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+
+        Uri selectedImageUri = null;
+
+        ImageView foto = (ImageView) findViewById(R.id.imageView);
+        if(requestCode==SELECT_FILE){
+            selectedImage = data.getData();
+            Log.d("Rober", "el nom de la imatge es: " + selectedImage.toString());
+            Log.d("Rober","ara es quan vaig a fer setImageURI");
+            foto.setImageURI(selectedImage);
+
+
+
+        }//final if
+        if(requestCode==FOTO_CAMARA && resultCode ==RESULT_OK){
+            Log.d("Rober","fent la foto");
+            //Web interesant = http://www.tutorialeshtml5.com/2013/12/tutorial-android-utilizar-el-intent-de.html
+            //Fuente = https://developer.android.com/training/camera/photobasics.html#TaskPath
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            foto.setImageBitmap(imageBitmap);
+        }//final if
+
+    }//final onActivityResult
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // callback de una opcion del boton de menu
+        if (item.getItemId() == 111) {
+            Toast.makeText(this, "enviar_pulsado", Toast.LENGTH_LONG).show();
+
+            //Enviar la foto seleccionada: (pag.109 ApuntesPMOV)
+            Intent sendIntent = new Intent(Intent.ACTION_SEND);
+            sendIntent.setType("image/jpeg");
+            sendIntent.putExtra(Intent.EXTRA_STREAM, selectedImage);
+            
+        }
+        return false;
+    }
 }
